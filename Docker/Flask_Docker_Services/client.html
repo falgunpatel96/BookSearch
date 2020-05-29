@@ -1,0 +1,80 @@
+<html>
+<head><title></title></head>
+
+	<body>
+
+	<div style="border:1px solid black;">
+	    <table >
+	        <tr>
+	            <td>
+	                <div id="bloc1" align="left" >
+	                	<br>
+						<form action="http://54.211.91.7:5000/getdata" method="post">
+							Keyword: <input type="text" name="keyword" required="required"><br><br>
+							<input type="radio" name="type" value="title" checked>Title
+							<input type="radio" name="type" value="author">Author<br><br>
+							<input type="submit" name="Submit">
+						</form>
+
+						<br>
+						{% if dataflag %}	
+							<table border='4' class='stats' cellspacing='0'>
+								<tr>
+									<th>Title</th>
+									<th>Author</th>
+								</tr>
+								{% for element in data %}
+									<tr>
+					        			<td> {{ element['title'] }} </td>
+					        			<td>
+						        		{{ element['authors'] }}
+						        		</td>
+						    		</tr>
+								{% endfor %}
+							</table>
+							<br>
+							<br>
+							<br>
+							{% if msg%}
+								<h4>{{ msg['done'] }}</h4>
+							{% endif %}
+							<form method="post" action="/addnote">
+								Note: <input type="text" name="note" required="required"><br><br>
+								<input type="hidden" name="keyword" value="{{ key }}">
+								<input type="submit" onclick = "/addnote" value="Add Note">
+							</form>
+						{% endif %}
+						<br>
+	                </div>
+	            </td>
+	            <td>
+	                <div id="bloc2" align="right">
+                		<br>
+						<form action="http://54.211.91.7:5000/shownote" method="post" >
+							Keyword: <input type="text" name="keyword" required="required"><br><br>
+							<input type="submit" onclick= "/shownote" value="Show Note">
+						</form>
+						{% if dataNotes %}
+							<h4>Total Notes: {{ notedata|length }}</h4>
+							<table border='4' class='stats' cellspacing='0'>
+								<tr>
+									<th>Notes</th>
+								</tr>
+								{% for note in notedata %}
+									<tr>
+										<td>
+											{{ note }}
+										</td>
+									</tr>
+								{% endfor %}
+							</table>
+						{% endif %}
+	                </div>
+	            </td>
+	        </tr>
+	    </table>
+	</div>
+
+
+	</body>
+</html>
