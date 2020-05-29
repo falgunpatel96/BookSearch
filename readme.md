@@ -7,4 +7,4 @@ The front-end of the web application is created using HTML and the Python is use
 
 **Architecture**
 
-<img src = "ScreenShots/SystemFlow.PNG" height="370px" width="700px">
+<img src = "ScreenShots/SystemFlow.png" height="370px" width="700px">
